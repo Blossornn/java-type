@@ -8,9 +8,9 @@ public class MainClass08 {
 		 * 의 총합을 콘솔창에 출력하는프로그래밍
 		 * */
 		int sum = 0;
-		for (int i = 0; i<=100; i++) {
-			sum +=  i;
+		for (int i=0; i <= 100; i++) {
+				sum += i;
 		}
-		System.out.println("1~100까지 총 합: " + sum);	
-	}
+		System.out.println("1~100까지의 총 합 : " + sum);
+	}	
 }
