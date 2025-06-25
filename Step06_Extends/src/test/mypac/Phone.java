@@ -1,0 +1,14 @@
+package test.mypac;
+
+// 가상의 옛날 가정용 전화기 객체를 생성 할 설계도라고 가
+public class Phone extends Object {
+	// 생성자
+	public Phone() {
+		System.out.println("Phone 생성자가 호출 됨");
+	}
+
+// 전화 거는 메소드
+	public void call() {
+		System.out.println("전화를 걸어요!");
+	}
+}
