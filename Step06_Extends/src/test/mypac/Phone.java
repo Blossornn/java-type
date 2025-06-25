@@ -1,6 +1,6 @@
 package test.mypac;
 
-// 가상의 옛날 가정용 전화기 객체를 생성 할 설계도라고 가
+// 가상의 옛날 가정용 전화기 객체를 생성 할 설계도라고 가정
 public class Phone extends Object {
 	// 생성자
 	public Phone() {
