@@ -18,6 +18,7 @@ public class MyFrame extends JFrame {
 		JButton btn1 = new JButton("버튼1");
 		JButton btn2 = new JButton("버튼2");
 		JButton btn3 = new JButton("버튼3");
+		
 
 		// 버튼에 액션 리스너 등록
 		btn1.addActionListener(new ActionListener() {
@@ -40,11 +41,11 @@ public class MyFrame extends JFrame {
 				System.out.println("버튼3을 눌렀네요!");
 			}
 		});
-
+		
 		add(btn1);
 		add(btn2);
 		add(btn3);
-
+		
 		setVisible(true);
 	}
 
