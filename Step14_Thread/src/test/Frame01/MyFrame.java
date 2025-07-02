@@ -40,6 +40,7 @@ public class MyFrame extends JFrame {
 					
 	});
 	startBtn2.addActionListener((e)->{
+		// WorkThread객체를 생성해서 새로운 스레드를 시작 시킨다.
 		new WorkThread().start();
 	});
 		
