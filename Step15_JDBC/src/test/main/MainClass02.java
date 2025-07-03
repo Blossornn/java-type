@@ -12,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class MainClass01 {
+public class MainClass02 {
 	public static void main(String[] args) {
 			// DB에 접속에서 작업을 하려면 Connection 객체가 필요
 			Connection conn = null;
@@ -32,8 +32,12 @@ public class MainClass01 {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			try {
-				// 실행할 sql 문 미리 준비
-				String sql = "SELECT empno, ename, job, sal FROM emp ORDER BY empno ASC";
+				// 실행할 sql 문 미리 준비하기 ( java 10부터 추가 된 문법)
+				String sql = """
+						SELECT empno, ename, job, sal
+						 FROM emp
+						ORDER BY empno ASC
+						""";
 				// sql 문 을 전달하면서 PreparedStatement 객체의 참조값 얻어내기
 				pstmt = conn.prepareStatement(sql);
 				// SELECT 문 실행 후 결과 result 객체
