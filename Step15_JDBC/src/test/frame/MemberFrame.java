@@ -50,15 +50,40 @@ public class MemberFrame extends JFrame {
 		updateBtn.addActionListener((e) -> {
 			int selectedRow = table.getSelectedRow();
 			if (selectedRow == -1) {
-				JOptionPane.showMessageDialog(this, "수정 할 회원을 선택 해 주세요");
+				JOptionPane.showMessageDialog(this, "수정할 row 를 선택해 주세요!");
 				return;
 			}
 			int num = (int) model.getValueAt(selectedRow, 0);
-			String name = inputName.getText();
-			String addr = inputAddr.getText();
+			MemberDto dto = dao.getByNum(num);
 
+			JTextField inputName = new JTextField(10);
+			JTextField inputAddr = new JTextField(10);
+			inputName.setText(dto.getName()); // 기존 값 채워줌
+			inputAddr.setText(dto.getAddr());
+			JPanel editPanel = new JPanel();
+			editPanel.add(new JLabel("이름:"));
+			editPanel.add(inputName);
+			editPanel.add(new JLabel("주소:"));
+			editPanel.add(inputAddr);
+
+			int result = JOptionPane.showConfirmDialog(this, editPanel, num + " 번 회원 수정", JOptionPane.OK_CANCEL_OPTION);
+
+			if (result == JOptionPane.OK_OPTION) {
+				String name = inputName.getText();
+				String addr = inputAddr.getText();
+				MemberDto newDto = new MemberDto();
+				newDto.setNum(num);
+				newDto.setName(name);
+				newDto.setAddr(addr);
+				boolean isSuccess = dao.update(newDto);
+				if (isSuccess) {
+					JOptionPane.showMessageDialog(this, "수정 성공");
+					printMember();
+				} else {
+					JOptionPane.showMessageDialog(this, "수정 실패");
+				}
+			}
 		});
-
 
 		// 삭제 버튼 눌렀을 때 실행 할 함수 등록
 		deleteBtn.addActionListener((e) -> {
@@ -75,9 +100,8 @@ public class MemberFrame extends JFrame {
 			dao.delteteByNum(num);
 			// 테이블 리셋 후 DB에서 다시 불러오기
 			printMember();
-			
+
 		});
-		
 
 		// 패널에 UI 배치
 		JPanel panel = new JPanel();
@@ -161,7 +185,7 @@ public class MemberFrame extends JFrame {
 			Object[] row = { tmp.getNum(), tmp.getName(), tmp.getAddr() };
 			model.addRow(row); // 테이블에 추가
 		}
-		
+
 	}
 
 	public static void main(String[] args) {
